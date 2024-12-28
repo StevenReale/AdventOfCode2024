@@ -67,9 +67,12 @@ public class Day2 {
     }
 
     private static Boolean isAscending(int[] line, Boolean isDampened){
-        return isDampened
-                ? line[0] < line[1] || line[0] < line[2] || (line[1] < line[2] && line[2] < line[3])
-                : line[0] < line[1] && line[1] < line[2];
+        if(!isDampened) return line[0] < line[1] && line[1] < line[2];
+        return
+            (line[0] < line[1] && line[1] < line[2]) ||
+            (line[1] < line[2] && line[2] < line[3]) ||
+            (line[0] < line[2] && line[2] < line[3]) ||
+            (line[0] < line[1] && line[1] < line[3]);
     }
 
     private static int[] removeIndex(int[] line, int indexToRemove){
