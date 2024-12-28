@@ -31,6 +31,7 @@ public class Day1 {
         System.out.print("Total Similarity Score: ");
         System.out.println(similarityScore);
     }
+
     private static List<Integer>[] parseInput(List<String> input){
         List<Integer>[] output = new List[2];
         output[0] = new ArrayList<>();
