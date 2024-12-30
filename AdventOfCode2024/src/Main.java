@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         String file = "Library/Day7.txt";
         List<String> input = getInput(file);
-        Day7.Part1(input);
+        Day7.Part2(input);
     }
 
     public static List<String> getInput(String file) {

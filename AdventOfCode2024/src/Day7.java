@@ -3,12 +3,23 @@ import java.util.List;
 
 public class Day7 {
     public static void Part1(List<String> input){
-        int validEquations = 0;
+        long totalCalibrationResult = 0;
         for(String line: input) {
             Equation equation = generateEquation(line);
-            validEquations += validateEquation(equation, 1, equation.values.get(0));
+            if(validateEquation(equation, 1, equation.values.get(0)))
+                totalCalibrationResult += equation.target;
         }
-        System.out.println("Valid equations: " + validEquations);
+        System.out.println("Total Calibration Result: " + totalCalibrationResult);
+    }
+
+    public static void Part2(List<String> input){
+        long totalCalibrationResult = 0;
+        for(String line: input) {
+            Equation equation = generateEquation(line);
+            if(validateEquationWithConcat(equation, 1, equation.values.get(0)))
+                totalCalibrationResult += equation.target;
+        }
+        System.out.println("Total Calibration Result: " + totalCalibrationResult);
     }
 
     private static Equation generateEquation(String line){
@@ -24,25 +35,36 @@ public class Day7 {
         return equation;
     }
 
-    private static int validateEquation(Equation equation, int currentIndex, Long currentValue){
-        Long potentialSum = currentValue + equation.values.get(currentIndex);
-        Long potentialProduct = currentValue * equation.values.get(currentIndex);
+    private static boolean validateEquation(Equation equation, int currentIndex, long currentValue){
+        long potentialSum = currentValue + equation.values.get(currentIndex);
+        long potentialProduct = currentValue * equation.values.get(currentIndex);
 
         if (currentIndex == equation.values.size() - 1){
-            return
-                (potentialSum == equation.target ) ||
-                (potentialProduct == equation.target )
-                    ? 1 : 0;
+            return potentialSum == equation.target || potentialProduct == equation.target;
         }
 
-        int validatedSum = validateEquation(equation, currentIndex+1, potentialSum);
-        int validatedProduct = validateEquation(equation,  currentIndex+1, potentialProduct);
+        return
+            validateEquation(equation, currentIndex+1, potentialSum) ||
+            validateEquation(equation,  currentIndex+1, potentialProduct);
+    }
 
-        return validatedProduct == 1 || validatedSum == 1 ? 1 : 0;
+    private static boolean validateEquationWithConcat(Equation equation, int currentIndex, long currentValue){
+        long potentialSum = currentValue + equation.values.get(currentIndex);
+        long potentialProduct = currentValue * equation.values.get(currentIndex);
+        long potentialConcat = Long.parseLong(Long.toString(currentValue) + equation.values.get(currentIndex));
+
+        if (currentIndex == equation.values.size() - 1){
+            return potentialSum == equation.target || potentialProduct == equation.target || potentialConcat == equation.target;
+        }
+
+        return
+            validateEquationWithConcat(equation, currentIndex+1, potentialSum) ||
+            validateEquationWithConcat(equation,  currentIndex+1, potentialProduct) ||
+            validateEquationWithConcat(equation,  currentIndex+1, potentialConcat);
     }
 
     private static class Equation {
-        public Long target;
+        public long target;
         public List<Long> values;
 
         public Equation(){
