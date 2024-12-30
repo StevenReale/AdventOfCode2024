@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String file = "Library/Day6Sample.txt";
+        String file = "Library/Day7.txt";
         List<String> input = getInput(file);
-        Day6.Part1(input);
+        Day7.Part1(input);
     }
 
     public static List<String> getInput(String file) {
