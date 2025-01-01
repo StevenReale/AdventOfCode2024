@@ -1,3 +1,5 @@
+package Days;
+
 import java.util.*;
 
 public class Day1 {

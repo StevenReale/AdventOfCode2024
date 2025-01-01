@@ -1,3 +1,5 @@
+package Days;
+
 import java.util.*;
 
 public class Day6 {
@@ -31,7 +33,7 @@ public class Day6 {
                     direction = (direction + 1) % 4;
                     {
                         //this block for debugging
-                        //printMap(input);
+                        //Helpers.PrintMap(input);
                         //Scanner scanner = new Scanner (System.in);
                         //scanner.nextLine();
                     }
@@ -123,12 +125,7 @@ public class Day6 {
         throw new RuntimeException("No guard found");
     }
 
-    private static void printMap(List<String> input){
-        for (int i = 0; i < input.size(); i++) {
-            System.out.println(input.get(i));
-        }
-        System.out.println();
-    }
+
 
     private static char getNextLocation(List<String> input, int col, int row, int direction){
         try {

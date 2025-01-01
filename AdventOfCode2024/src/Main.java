@@ -1,3 +1,4 @@
+import Days.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,9 +8,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String file = "Library/Day7.txt";
+        String file = "Library/Day9Sample.txt";
         List<String> input = getInput(file);
-        Day7.Part2(input);
+        Day9.Part2(input);
     }
 
     public static List<String> getInput(String file) {

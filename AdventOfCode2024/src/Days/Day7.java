@@ -1,3 +1,5 @@
+package Days;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class Day7 {
 
         return
             validateEquation(equation, currentIndex+1, potentialSum) ||
-            validateEquation(equation,  currentIndex+1, potentialProduct);
+            validateEquation(equation, currentIndex+1, potentialProduct);
     }
 
     private static boolean validateEquationWithConcat(Equation equation, int currentIndex, long currentValue){
@@ -59,8 +61,8 @@ public class Day7 {
 
         return
             validateEquationWithConcat(equation, currentIndex+1, potentialSum) ||
-            validateEquationWithConcat(equation,  currentIndex+1, potentialProduct) ||
-            validateEquationWithConcat(equation,  currentIndex+1, potentialConcat);
+            validateEquationWithConcat(equation, currentIndex+1, potentialProduct) ||
+            validateEquationWithConcat(equation, currentIndex+1, potentialConcat);
     }
 
     private static class Equation {
